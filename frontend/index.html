@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Book Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="logo">📚 BookTrack</h2>
+        <p class="sidebar-label">MAIN MENU</p>
+
+        <nav>
+            <a href="#dashboard" class="nav-link active">▦ Dashboard</a>
+            <a href="#books" class="nav-link">▤ All Books</a>
+            <a href="#members" class="nav-link">♙ Members</a>
+            <a href="#issued" class="nav-link">↗ Issued Books</a>
+            <a href="#overdue" class="nav-link">◷ Overdue Books</a>
+            <a href="#issue-form" class="nav-link">＋ Issue a Book</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <p>Library Management</p>
+            <small>BookTrack v1.0</small>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Library Overview</h1>
+                <p>Manage your library in one place.</p>
+            </div>
+            <div class="admin-profile">
+                <div class="avatar">A</div>
+                <div>
+                    <strong>Administrator</strong>
+                    <small>Library Manager</small>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dashboard -->
+        <section id="dashboard" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Dashboard</h2>
+                    <p>Here's what's happening in your library.</p>
+                </div>
+                <a href="#issue-form" class="btn btn-primary">+ Issue Book</a>
+            </div>
+
+            <div class="stats-grid">
+                <article class="stat-card">
+                    <div class="stat-icon blue">▤</div>
+                    <p>Total Books</p>
+                    <h2>1,250</h2>
+                    <small>Books in inventory</small>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon green">♙</div>
+                    <p>Total Members</p>
+                    <h2>320</h2>
+                    <small>Registered members</small>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon purple">↗</div>
+                    <p>Issued Books</p>
+                    <h2>86</h2>
+                    <small>Currently borrowed</small>
+                </article>
+
+                <article class="stat-card">
+                    <div class="stat-icon red">◷</div>
+                    <p>Overdue Books</p>
+                    <h2>12</h2>
+                    <small>Past their due date</small>
+                </article>
+            </div>
+
+            <div class="content-card">
+                <div class="section-heading">
+                    <div>
+                        <h2>Recent Issued Books</h2>
+                        <p>Recently borrowed books and their due dates.</p>
+                    </div>
+                    <a href="#issued" class="text-link">View all →</a>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book</th>
+                                <th>Member</th>
+                                <th>Issue Date</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Clean Code</td>
+                                <td>Arun Kumar</td>
+                                <td>10 Oct 2026</td>
+                                <td>20 Oct 2026</td>
+                                <td><span class="badge badge-blue">Issued</span></td>
+                            </tr>
+                            <tr>
+                                <td>Atomic Habits</td>
+                                <td>Priya S</td>
+                                <td>01 Oct 2026</td>
+                                <td>10 Oct 2026</td>
+                                <td><span class="badge badge-red">Overdue</span></td>
+                            </tr>
+                            <tr>
+                                <td>Java: The Complete Reference</td>
+                                <td>Rahul M</td>
+                                <td>08 Oct 2026</td>
+                                <td>18 Oct 2026</td>
+                                <td><span class="badge badge-blue">Issued</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Books -->
+        <section id="books" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>All Books</h2>
+                    <p>Manage your book inventory.</p>
+                </div>
+                <button class="btn btn-primary" type="button">+ Add Book</button>
+            </div>
+
+            <div class="content-card">
+                <div class="toolbar">
+                    <input type="search"
+                           placeholder="Search title, author or ISBN..."
+                           aria-label="Search books">
+
+                    <select aria-label="Filter books by availability">
+                        <option value="">All Books</option>
+                        <option value="available">Available</option>
+                        <option value="issued">Issued</option>
+                    </select>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Book ID</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>ISBN</th>
+                                <th>Quantity</th>
+                                <th>Available</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#B001</td>
+                                <td>Clean Code</td>
+                                <td>Robert C. Martin</td>
+                                <td>9780132350884</td>
+                                <td>10</td>
+                                <td>7</td>
+                                <td class="actions">
+                                    <button class="btn-edit" type="button">Edit</button>
+                                    <button class="btn-delete" type="button">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#B002</td>
+                                <td>Atomic Habits</td>
+                                <td>James Clear</td>
+                                <td>9780735211292</td>
+                                <td>8</td>
+                                <td>5</td>
+                                <td class="actions">
+                                    <button class="btn-edit" type="button">Edit</button>
+                                    <button class="btn-delete" type="button">Delete</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>#B003</td>
+                                <td>Deep Work</td>
+                                <td>Cal Newport</td>
+                                <td>9781455586691</td>
+                                <td>6</td>
+                                <td>6</td>
+                                <td class="actions">
+                                    <button class="btn-edit" type="button">Edit</button>
+                                    <button class="btn-delete" type="button">Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Members -->
+        <section id="members" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Members</h2>
+                    <p>View registered library members.</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <div class="toolbar">
+                    <input type="search" placeholder="Search member name or ID..."
+                           aria-label="Search members">
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Member ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Books Issued</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#M001</td>
+                                <td>Arun Kumar</td>
+                                <td>arun@example.com</td>
+                                <td>9876543210</td>
+                                <td>2</td>
+                            </tr>
+                            <tr>
+                                <td>#M002</td>
+                                <td>Priya S</td>
+                                <td>priya@example.com</td>
+                                <td>9876543211</td>
+                                <td>1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Issued Books -->
+        <section id="issued" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Issued Books</h2>
+                    <p>Track all currently borrowed books.</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Issue ID</th>
+                                <th>Book ID</th>
+                                <th>Member ID</th>
+                                <th>Issue Date</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#I001</td>
+                                <td>#B001</td>
+                                <td>#M001</td>
+                                <td>10 Oct 2026</td>
+                                <td>20 Oct 2026</td>
+                                <td><span class="badge badge-blue">Issued</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overdue Books -->
+        <section id="overdue" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Overdue Books</h2>
+                    <p>Books that have passed their due date.</p>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Issue ID</th>
+                                <th>Book ID</th>
+                                <th>Member ID</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#I002</td>
+                                <td>#B002</td>
+                                <td>#M002</td>
+                                <td>10 Oct 2026</td>
+                                <td><span class="badge badge-red">Overdue</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Issue Book Form -->
+        <section id="issue-form" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Issue a Book</h2>
+                    <p>Record a book loan for a library member.</p>
+                </div>
+            </div>
+
+            <div class="content-card form-card">
+                <form>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="book-id">Book ID</label>
+                            <input id="book-id" name="bookId"
+                                   type="text" placeholder="Enter book ID"
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="member-id">Member ID</label>
+                            <input id="member-id" name="memberId"
+                                   type="text" placeholder="Enter member ID"
+                                   required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="issue-date">Issue Date</label>
+                            <input id="issue-date" name="issueDate"
+                                   type="date" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="due-date">Due Date</label>
+                            <input id="due-date" name="dueDate"
+                                   type="date" required>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="btn btn-secondary">
+                            Clear
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Issue Book
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <footer class="footer">
+            Library Book Tracker · Built for better library management
+        </footer>
+
+    </main>
+</div>
+
+</body>
+</html>
