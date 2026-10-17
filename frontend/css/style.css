@@ -462,6 +462,31 @@ tbody tr:hover {
     border-top: 1px solid #edf1f6;
 }
 
+
+
+/* Add Book form improvements */
+
+#add-book-form .form-card {
+    max-width: 900px;
+}
+
+#add-book-form input {
+    min-height: 44px;
+}
+
+#add-book-form .form-group label {
+    font-size: 13px;
+}
+
+#add-book-form input:invalid:not(:placeholder-shown) {
+    border-color: #ef4444;
+}
+
+#add-book-form input:valid:not(:placeholder-shown) {
+    border-color: #86b99a;
+}
+
+
 /* ---------- Footer ---------- */
 .footer {
     padding: 22px 0;

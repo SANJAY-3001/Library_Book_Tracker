@@ -143,7 +143,9 @@
                     <h2>All Books</h2>
                     <p>Manage your book inventory.</p>
                 </div>
-                <button class="btn btn-primary" type="button">+ Add Book</button>
+                <a href="#add-book-form" class="btn btn-primary">
+                    + Add Book
+                </a>
             </div>
 
             <div class="content-card">
@@ -215,52 +217,144 @@
             </div>
         </section>
 
-        <!-- Members -->
-        <section id="members" class="section">
-            <div class="section-heading">
-                <div>
-                    <h2>Members</h2>
-                    <p>View registered library members.</p>
-                </div>
-            </div>
 
-            <div class="content-card">
-                <div class="toolbar">
-                    <input type="search" placeholder="Search member name or ID..."
-                           aria-label="Search members">
+
+
+
+        
+    <!-- Add Book Form -->
+    <section id="add-book-form" class="section">
+        <div class="section-heading">
+            <div>
+                <h2>Add New Book</h2>
+                <p>Enter the details to add a book to your library.</p>
+            </div>
+        </div>
+
+        <div class="content-card form-card">
+            <form id="book-form">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="book-name">Book Name</label>
+                        <input
+                            type="text"
+                            id="book-name"
+                            name="book_name"
+                            placeholder="Enter book name"
+                            maxlength="200"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input
+                            type="text"
+                            id="author"
+                            name="author"
+                            placeholder="Enter author name"
+                            maxlength="150"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="isbn">ISBN</label>
+                        <input
+                            type="text"
+                            id="isbn"
+                            name="isbn"
+                            placeholder="Enter ISBN"
+                            maxlength="20"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="total-copies">Total Copies</label>
+                        <input
+                            type="number"
+                            id="total-copies"
+                            name="total_copies"
+                            placeholder="Enter total copies"
+                            min="1"
+                            step="1"
+                            required
+                        >
+                    </div>
+
                 </div>
 
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Member ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Books Issued</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#M001</td>
-                                <td>Arun Kumar</td>
-                                <td>arun@example.com</td>
-                                <td>9876543210</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>#M002</td>
-                                <td>Priya S</td>
-                                <td>priya@example.com</td>
-                                <td>9876543211</td>
-                                <td>1</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="form-actions">
+                    <button
+                        type="reset"
+                        class="btn btn-secondary"
+                    >
+                        Clear
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Add Book
+                    </button>
                 </div>
-            </div>
-        </section>
+
+            </form>
+        </div>
+    </section>
+
+
+
+            <!-- Members -->
+            <section id="members" class="section">
+                <div class="section-heading">
+                    <div>
+                        <h2>Members</h2>
+                        <p>View registered library members.</p>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <div class="toolbar">
+                        <input type="search" placeholder="Search member name or ID..."
+                            aria-label="Search members">
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Member ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Books Issued</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#M001</td>
+                                    <td>Arun Kumar</td>
+                                    <td>arun@example.com</td>
+                                    <td>9876543210</td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>#M002</td>
+                                    <td>Priya S</td>
+                                    <td>priya@example.com</td>
+                                    <td>9876543211</td>
+                                    <td>1</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
 
         <!-- Issued Books -->
         <section id="issued" class="section">
@@ -384,6 +478,8 @@
                 </form>
             </div>
         </section>
+
+        
 
         <footer class="footer">
             Library Book Tracker · Built for better library management
