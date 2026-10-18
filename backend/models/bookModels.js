@@ -1,24 +1,59 @@
 import db from '../config/db.js'
 
 export const getBookFromDb = async(req) => {
-    let query = `SELECT * FROM Books WHERE 1 = 1`
+    let query = `SELECT b.book_id , b.book_name , b.author , b.isbn , b.total_copies , b.created_at,
+    b.total_copies - COUNT(bi.issue_id) AS available_books
+    FROM Books b LEFT JOIN Book_Issues bi ON b.book_id = bi.book_id AND bi.status = 'issued' 
+    WHERE 1 = 1`
+
     const queryArgs = []
 
     const queryParams = req.query
 
-    const { title , author , isbn } = queryParams
+    const { title , author , isbn , search , availability } = queryParams
 
-    if (title) {
-        query += ` AND book_name LIKE ?`
-        queryArgs.push(`%${title}%`)
+    if (search) {
+
+        query += ` AND (
+        b.book_name LIKE ?
+        OR b.author LIKE ?
+        OR b.isbn LIKE ?
+        )`;
+
+        const searchValue = `%${search}%`;
+
+        queryArgs.push(searchValue, searchValue, searchValue);
     }
-    if (author) {
-        query += ` AND author LIKE ?`
-        queryArgs.push(`%${author}%`)
+    else {
+        if (title) {
+            query += ` AND book_name LIKE ?`
+            queryArgs.push(`%${title}%`)
+        }
+        if (author) {
+            query += ` AND author LIKE ?`
+            queryArgs.push(`%${author}%`)
+        }
+        if (isbn) {
+            query += ` AND isbn = ?`
+            queryArgs.push(isbn)
+        }
     }
-    if (isbn) {
-        query += ` AND isbn = ?`
-        queryArgs.push(isbn)
+
+    query += `
+        GROUP BY
+            b.book_id,
+            b.book_name,
+            b.author,
+            b.isbn,
+            b.total_copies,
+            b.created_at
+    `
+
+    if (availability === 'available') {
+        query += ` HAVING available_books > 0`
+    }
+    else if (availability === 'issued') {
+        query += ` HAVING available_books != b.total_copies`
     }
 
     const [rows] = await db.execute(query , queryArgs)
@@ -28,7 +63,29 @@ export const getBookFromDb = async(req) => {
 
 
 export const getBookByIdFromDb = async(id) => {
-    const query = `SELECT * FROM Books WHERE book_id = ?`
+    const query = `
+        SELECT
+            b.book_id,
+            b.book_name,
+            b.author,
+            b.isbn,
+            b.total_copies,
+            b.created_at,
+            b.total_copies - COUNT(bi.issue_id)
+                AS available_copies
+        FROM Books b
+        LEFT JOIN Book_Issues bi
+            ON b.book_id = bi.book_id
+            AND bi.status = 'issued'
+        WHERE b.book_id = ?
+        GROUP BY
+            b.book_id,
+            b.book_name,
+            b.author,
+            b.isbn,
+            b.total_copies,
+            b.created_at
+    `
     const queryArgs = [id]
 
     const [rows] = await db.execute(query , queryArgs)

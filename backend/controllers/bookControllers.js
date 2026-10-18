@@ -4,7 +4,7 @@ import { getBookFromDb , getBookByIdFromDb , addBooksIntoDb ,
 
 export const getBook = async(req , res , next) => {
 
-    const allowedParams = ["title" , "author" , "isbn"]
+    const allowedParams = ["title" , "author" , "isbn" , "search" , "availability"]
     
     const invalidParams = Object.keys(req.query)
             .filter(param => !allowedParams.includes(param))

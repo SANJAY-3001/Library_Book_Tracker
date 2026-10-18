@@ -62,7 +62,7 @@
                 <article class="stat-card">
                     <div class="stat-icon blue">▤</div>
                     <p>Total Books</p>
-                    <h2>1,250</h2>
+                    <h2 id="total-no-books">0</h2>
                     <small>Books in inventory</small>
                 </article>
 
@@ -151,10 +151,11 @@
             <div class="content-card">
                 <div class="toolbar">
                     <input type="search"
+                           id="search-books"
                            placeholder="Search title, author or ISBN..."
                            aria-label="Search books">
 
-                    <select aria-label="Filter books by availability">
+                    <select id="availability-filter" aria-label="Filter books by availability">
                         <option value="">All Books</option>
                         <option value="available">Available</option>
                         <option value="issued">Issued</option>
@@ -174,43 +175,10 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>#B001</td>
-                                <td>Clean Code</td>
-                                <td>Robert C. Martin</td>
-                                <td>9780132350884</td>
-                                <td>10</td>
-                                <td>7</td>
-                                <td class="actions">
-                                    <button class="btn-edit" type="button">Edit</button>
-                                    <button class="btn-delete" type="button">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#B002</td>
-                                <td>Atomic Habits</td>
-                                <td>James Clear</td>
-                                <td>9780735211292</td>
-                                <td>8</td>
-                                <td>5</td>
-                                <td class="actions">
-                                    <button class="btn-edit" type="button">Edit</button>
-                                    <button class="btn-delete" type="button">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#B003</td>
-                                <td>Deep Work</td>
-                                <td>Cal Newport</td>
-                                <td>9781455586691</td>
-                                <td>6</td>
-                                <td>6</td>
-                                <td class="actions">
-                                    <button class="btn-edit" type="button">Edit</button>
-                                    <button class="btn-delete" type="button">Delete</button>
-                                </td>
-                            </tr>
+
+                        <tbody id="books-table-body">
+                            
+                        <!-- Render all books -->
                         </tbody>
                     </table>
                 </div>
@@ -230,6 +198,8 @@
                 <p>Enter the details to add a book to your library.</p>
             </div>
         </div>
+
+        <p class="error" id="error"></p>
 
         <div class="content-card form-card">
             <form id="book-form">
@@ -306,6 +276,59 @@
             </form>
         </div>
     </section>
+
+
+
+    <!-- Edit modal form -->
+
+    <div id="edit-book-modal" class="modal" hidden>
+        <div class="modal-content">
+            <h2>Edit Book</h2>
+            
+        <p class="error" id="error"></p>
+        <form id="edit-book-form">
+            <input type="hidden" name="book_id">
+
+            <label for="edit-book-name">Book Name</label>
+            <input
+                id="edit-book-name"
+                name="book_name"
+                type="text"
+                required
+            >
+
+            <label for="edit-author">Author</label>
+            <input
+                id="edit-author"
+                name="author"
+                type="text"
+                required
+            >
+
+            <label for="edit-isbn">ISBN</label>
+            <input
+                id="edit-isbn"
+                name="isbn"
+                type="text"
+                required
+            >
+
+            <label for="edit-total-copies">Total Copies</label>
+            <input
+                id="edit-total-copies"
+                name="total_copies"
+                type="number"
+                min="0"
+                required
+            >
+
+            <button type="submit">Save Changes</button>
+            <button type="button" id="cancel-edit">
+                Cancel
+            </button>
+            </form>
+        </div>
+    </div>
 
 
 
@@ -488,5 +511,7 @@
     </main>
 </div>
 
+
+    <script src="js/script.js" type="module"></script>
 </body>
 </html>

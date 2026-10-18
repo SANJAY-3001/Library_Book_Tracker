@@ -621,3 +621,53 @@ tbody tr:hover {
         padding: 10px 12px;
     }
 }
+
+
+
+/* Error */
+.error {
+    color: red;
+}
+
+
+/* Modal */
+
+.modal[hidden] {
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgb(0 0 0 / 50%);
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 450px;
+    padding: 24px;
+    border-radius: 12px;
+    background: white;
+}
+
+#edit-book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#edit-book-form input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#edit-book-form button {
+    padding: 10px;
+    cursor: pointer;
+}
