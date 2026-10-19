@@ -3,6 +3,7 @@ import "dotenv/config"
 import { bookRoutes } from "./routes/bookRoutes.js"
 import { errorHandler } from "./middlewares/errorMiddleware.js"
 import { memberRoutes } from "./routes/memberRoutes.js"
+import { bookIssueRoutes } from "./routes/bookIssueRoutes.js"
 
 const app = express()
 const PORT = process.env.PORT
@@ -12,6 +13,7 @@ app.use(express.json())
 
 app.use('/api/books' , bookRoutes)
 app.use('/api/members' , memberRoutes)
+app.use('/api/book-issues' , bookIssueRoutes)
 
 
 app.use((req , res) => {
