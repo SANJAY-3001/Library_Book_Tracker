@@ -6,7 +6,7 @@ import { totalNoBooks , booksTableBody } from './dom/bookDom.js'
 
 let books = []
 
-
+// Initailize
 async function start() {
     try {
         await Promise.all([
@@ -18,6 +18,8 @@ async function start() {
     }
 }
 
+
+// Books
 async function loadBooks() {
     books = await getAllBooks()
         
@@ -38,5 +40,15 @@ async function applyBookFilters(search = "" , availability = "") {
 }
 
 setupBookEvents(applyBookFilters , loadBooks)
+
+
+// Members
+
+
+
+
+// Books issues
+
+
 
 start()

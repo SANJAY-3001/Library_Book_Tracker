@@ -671,3 +671,9 @@ tbody tr:hover {
     padding: 10px;
     cursor: pointer;
 }
+
+#edit-member-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

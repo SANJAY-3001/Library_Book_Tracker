@@ -279,7 +279,7 @@
 
 
 
-    <!-- Edit modal form -->
+    <!-- Edit book modal form -->
 
     <div id="edit-book-modal" class="modal" hidden>
         <div class="modal-content">
@@ -332,52 +332,177 @@
 
 
 
-            <!-- Members -->
-            <section id="members" class="section">
-                <div class="section-heading">
-                    <div>
-                        <h2>Members</h2>
-                        <p>View registered library members.</p>
-                    </div>
+        
+        <!-- Members -->
+        <section id="members" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Members</h2>
+                    <p>Manage registered library members.</p>
                 </div>
 
-                <div class="content-card">
-                    <div class="toolbar">
-                        <input type="search" placeholder="Search member name or ID..."
-                            aria-label="Search members">
+                <a href="#add-member-form" class="btn btn-primary">
+                    + Add Member
+                </a>
+            </div>
+
+            <div class="content-card">
+                <div class="toolbar">
+                    <input
+                        type="search"
+                        id="search-members"
+                        placeholder="Search member name, email or ID..."
+                        aria-label="Search members"
+                    >
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Member ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Books Issued</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="members-table-body">
+                            <!-- Members will be rendered using memberUI.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        
+        <!-- Add Member Form -->
+        <section id="add-member-form" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Add New Member</h2>
+                    <p>Enter the details to register a library member.</p>
+                </div>
+            </div>
+
+            <p class="error" id="member-error" role="alert"></p>
+
+            <div class="content-card form-card">
+                <form id="member-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="member-name">Member Name</label>
+                            <input
+                                type="text"
+                                id="member-name"
+                                name="user_name"
+                                placeholder="Enter member name"
+                                maxlength="100"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="member-email">Email</label>
+                            <input
+                                type="email"
+                                id="member-email"
+                                name="email"
+                                placeholder="Enter email address"
+                                maxlength="255"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="member-phone">Phone Number</label>
+                            <input
+                                type="tel"
+                                id="member-phone"
+                                name="phone_number"
+                                placeholder="Enter phone number"
+                                maxlength="20"
+                            >
+                        </div>
                     </div>
 
-                    <div class="table-wrapper">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Member ID</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Books Issued</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>#M001</td>
-                                    <td>Arun Kumar</td>
-                                    <td>arun@example.com</td>
-                                    <td>9876543210</td>
-                                    <td>2</td>
-                                </tr>
-                                <tr>
-                                    <td>#M002</td>
-                                    <td>Priya S</td>
-                                    <td>priya@example.com</td>
-                                    <td>9876543211</td>
-                                    <td>1</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="form-actions">
+                        <button type="reset" class="btn btn-secondary">
+                            Clear
+                        </button>
+
+                        <button type="submit" class="btn btn-primary">
+                            Add Member
+                        </button>
                     </div>
-                </div>
-            </section>
+                </form>
+            </div>
+        </section>
+
+        
+        <!-- Edit Member Modal -->
+        <div id="edit-member-modal" class="modal" hidden>
+            <div class="modal-content">
+                <h2>Edit Member</h2>
+
+                <p class="error" id="edit-member-error" role="alert"></p>
+
+                <form id="edit-member-form">
+                    <input type="hidden" name="user_id">
+
+                    <div class="form-group">
+                        <label for="edit-member-name">Member Name</label>
+                        <input
+                            type="text"
+                            id="edit-member-name"
+                            name="user_name"
+                            maxlength="100"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-member-email">Email</label>
+                        <input
+                            type="email"
+                            id="edit-member-email"
+                            name="email"
+                            maxlength="255"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-member-phone">Phone Number</label>
+                        <input
+                            type="tel"
+                            id="edit-member-phone"
+                            name="phone_number"
+                            maxlength="20"
+                        >
+                    </div>
+
+                    <div class="form-actions">
+                        <button
+                            type="button"
+                            id="cancel-edit-member"
+                            class="btn btn-secondary"
+                        >
+                            Cancel
+                        </button>
+
+                        <button type="submit" class="btn btn-primary">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
 
         <!-- Issued Books -->
         <section id="issued" class="section">
