@@ -53,11 +53,7 @@ export function setupBookEvents(applyBookFilters , refresh) {
         }
         catch (err) {
             console.error("Failed to fetch book:", err.message);
-            document.querySelector('.modal-content #error').textContent = err.message;
-
-            setTimeout(() => {
-                document.querySelector('.modal-content #error').textContent = ""
-            } , 5000)
+            alert(err.message)
         }
     })
 
