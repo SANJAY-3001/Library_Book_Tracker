@@ -625,7 +625,7 @@ tbody tr:hover {
 
 
 /* Error */
-.error {
+.error , #issue-form-error {
     color: red;
 }
 

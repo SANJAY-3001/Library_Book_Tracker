@@ -25,8 +25,6 @@ export const getAllBooks = async(filters = {}) => {
         queryParams.append("availability" , filters.availability)
     }
 
-    console.log(queryParams)
-
     const url = queryParams.toString() ? `${API_URL}?${queryParams.toString()}` : API_URL
 
     const response = await fetch(url , {

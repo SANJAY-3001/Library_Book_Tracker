@@ -76,14 +76,14 @@
                 <article class="stat-card">
                     <div class="stat-icon purple">↗</div>
                     <p>Issued Books</p>
-                    <h2>86</h2>
+                    <h2 id="no-issued-books">0</h2>
                     <small>Currently borrowed</small>
                 </article>
 
                 <article class="stat-card">
                     <div class="stat-icon red">◷</div>
                     <p>Overdue Books</p>
-                    <h2>12</h2>
+                    <h2 id="no-overdue-books">0</h2>
                     <small>Past their due date</small>
                 </article>
             </div>
@@ -108,28 +108,8 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Clean Code</td>
-                                <td>Arun Kumar</td>
-                                <td>10 Oct 2026</td>
-                                <td>20 Oct 2026</td>
-                                <td><span class="badge badge-blue">Issued</span></td>
-                            </tr>
-                            <tr>
-                                <td>Atomic Habits</td>
-                                <td>Priya S</td>
-                                <td>01 Oct 2026</td>
-                                <td>10 Oct 2026</td>
-                                <td><span class="badge badge-red">Overdue</span></td>
-                            </tr>
-                            <tr>
-                                <td>Java: The Complete Reference</td>
-                                <td>Rahul M</td>
-                                <td>08 Oct 2026</td>
-                                <td>18 Oct 2026</td>
-                                <td><span class="badge badge-blue">Issued</span></td>
-                            </tr>
+                        <tbody id="recent-issued-table-body">
+                            
                         </tbody>
                     </table>
                 </div>
@@ -526,15 +506,8 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>#I001</td>
-                                <td>#B001</td>
-                                <td>#M001</td>
-                                <td>10 Oct 2026</td>
-                                <td>20 Oct 2026</td>
-                                <td><span class="badge badge-blue">Issued</span></td>
-                            </tr>
+                        <tbody id="issued-table-body">
+                            
                         </tbody>
                     </table>
                 </div>
@@ -562,14 +535,8 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>#I002</td>
-                                <td>#B002</td>
-                                <td>#M002</td>
-                                <td>10 Oct 2026</td>
-                                <td><span class="badge badge-red">Overdue</span></td>
-                            </tr>
+                        <tbody id="overdue-table-body">
+                            
                         </tbody>
                     </table>
                 </div>
@@ -577,16 +544,17 @@
         </section>
 
         <!-- Issue Book Form -->
-        <section id="issue-form" class="section">
+        <section class="section">
             <div class="section-heading">
                 <div>
                     <h2>Issue a Book</h2>
                     <p>Record a book loan for a library member.</p>
+                    <p class="error" id="issue-form-error"></p>
                 </div>
             </div>
 
             <div class="content-card form-card">
-                <form>
+                <form id="issue-form">
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="book-id">Book ID</label>

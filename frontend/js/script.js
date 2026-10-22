@@ -6,6 +6,10 @@ import { getMembers } from './api/memberApi.js'
 import { membersTableBody, totalNoMembers } from './dom/memberDom.js'
 import { renderMembers , renderTotalNoMembers } from './ui/memberUi.js'
 import { setupMemberEvents } from './events/memberEvent.js'
+import { issuedTableBody, noIssuedBooks, noOverdueBooks, overdueTableBody, recentIssuedTableBody } from './dom/bookIssueDom.js'
+import { renderIssuedBooks, renderOverdueBooks, renderRecentIssuedBooks, renderTotalNoBooksIssue } from './ui/bookIssueUi.js'
+import { getBookIssue } from './api/bookIssueApi.js'
+import { setupBookIssueEvents } from './events/bookIssueEvents.js'
 
 
 // Initailize
@@ -13,7 +17,8 @@ async function start() {
     try {
         await Promise.all([
             loadBooks(),
-            loadMembers()
+            loadMembers(),
+            loadBookIssues()
         ])
     }
     catch (err) {
@@ -75,6 +80,21 @@ setupMemberEvents(applyMemberFilters , loadMembers)
 
 // Books issues
 
+let issuedBooks = []
+let overdueBooks = []
+let allBooks = []
+async function loadBookIssues() {
 
+    allBooks = await getBookIssue()
+    issuedBooks = await getBookIssue({status : 'issued'})
+    overdueBooks = await getBookIssue({status : 'overdue'})
+
+    renderTotalNoBooksIssue(issuedBooks.length , overdueBooks.length , noIssuedBooks , noOverdueBooks)
+    renderIssuedBooks(issuedBooks , issuedTableBody)
+    renderOverdueBooks(overdueBooks , overdueTableBody)
+    renderRecentIssuedBooks(allBooks , recentIssuedTableBody)
+}
+
+setupBookIssueEvents(loadBookIssues)
 
 start()
