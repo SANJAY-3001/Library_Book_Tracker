@@ -462,6 +462,31 @@ tbody tr:hover {
     border-top: 1px solid #edf1f6;
 }
 
+
+
+/* Add Book form improvements */
+
+#add-book-form .form-card {
+    max-width: 900px;
+}
+
+#add-book-form input {
+    min-height: 44px;
+}
+
+#add-book-form .form-group label {
+    font-size: 13px;
+}
+
+#add-book-form input:invalid:not(:placeholder-shown) {
+    border-color: #ef4444;
+}
+
+#add-book-form input:valid:not(:placeholder-shown) {
+    border-color: #86b99a;
+}
+
+
 /* ---------- Footer ---------- */
 .footer {
     padding: 22px 0;
@@ -595,4 +620,60 @@ tbody tr:hover {
     .btn {
         padding: 10px 12px;
     }
+}
+
+
+
+/* Error */
+.error , #issue-form-error {
+    color: red;
+}
+
+
+/* Modal */
+
+.modal[hidden] {
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgb(0 0 0 / 50%);
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 450px;
+    padding: 24px;
+    border-radius: 12px;
+    background: white;
+}
+
+#edit-book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#edit-book-form input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#edit-book-form button {
+    padding: 10px;
+    cursor: pointer;
+}
+
+#edit-member-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }

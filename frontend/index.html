@@ -62,28 +62,28 @@
                 <article class="stat-card">
                     <div class="stat-icon blue">▤</div>
                     <p>Total Books</p>
-                    <h2>1,250</h2>
+                    <h2 id="total-no-books">0</h2>
                     <small>Books in inventory</small>
                 </article>
 
                 <article class="stat-card">
                     <div class="stat-icon green">♙</div>
                     <p>Total Members</p>
-                    <h2>320</h2>
+                    <h2 id="total-no-members">0</h2>
                     <small>Registered members</small>
                 </article>
 
                 <article class="stat-card">
                     <div class="stat-icon purple">↗</div>
                     <p>Issued Books</p>
-                    <h2>86</h2>
+                    <h2 id="no-issued-books">0</h2>
                     <small>Currently borrowed</small>
                 </article>
 
                 <article class="stat-card">
                     <div class="stat-icon red">◷</div>
                     <p>Overdue Books</p>
-                    <h2>12</h2>
+                    <h2 id="no-overdue-books">0</h2>
                     <small>Past their due date</small>
                 </article>
             </div>
@@ -108,28 +108,8 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Clean Code</td>
-                                <td>Arun Kumar</td>
-                                <td>10 Oct 2026</td>
-                                <td>20 Oct 2026</td>
-                                <td><span class="badge badge-blue">Issued</span></td>
-                            </tr>
-                            <tr>
-                                <td>Atomic Habits</td>
-                                <td>Priya S</td>
-                                <td>01 Oct 2026</td>
-                                <td>10 Oct 2026</td>
-                                <td><span class="badge badge-red">Overdue</span></td>
-                            </tr>
-                            <tr>
-                                <td>Java: The Complete Reference</td>
-                                <td>Rahul M</td>
-                                <td>08 Oct 2026</td>
-                                <td>18 Oct 2026</td>
-                                <td><span class="badge badge-blue">Issued</span></td>
-                            </tr>
+                        <tbody id="recent-issued-table-body">
+                            
                         </tbody>
                     </table>
                 </div>
@@ -143,16 +123,19 @@
                     <h2>All Books</h2>
                     <p>Manage your book inventory.</p>
                 </div>
-                <button class="btn btn-primary" type="button">+ Add Book</button>
+                <a href="#add-book-form" class="btn btn-primary">
+                    + Add Book
+                </a>
             </div>
 
             <div class="content-card">
                 <div class="toolbar">
                     <input type="search"
+                           id="search-books"
                            placeholder="Search title, author or ISBN..."
                            aria-label="Search books">
 
-                    <select aria-label="Filter books by availability">
+                    <select id="availability-filter" aria-label="Filter books by availability">
                         <option value="">All Books</option>
                         <option value="available">Available</option>
                         <option value="issued">Issued</option>
@@ -172,62 +155,185 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>#B001</td>
-                                <td>Clean Code</td>
-                                <td>Robert C. Martin</td>
-                                <td>9780132350884</td>
-                                <td>10</td>
-                                <td>7</td>
-                                <td class="actions">
-                                    <button class="btn-edit" type="button">Edit</button>
-                                    <button class="btn-delete" type="button">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#B002</td>
-                                <td>Atomic Habits</td>
-                                <td>James Clear</td>
-                                <td>9780735211292</td>
-                                <td>8</td>
-                                <td>5</td>
-                                <td class="actions">
-                                    <button class="btn-edit" type="button">Edit</button>
-                                    <button class="btn-delete" type="button">Delete</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#B003</td>
-                                <td>Deep Work</td>
-                                <td>Cal Newport</td>
-                                <td>9781455586691</td>
-                                <td>6</td>
-                                <td>6</td>
-                                <td class="actions">
-                                    <button class="btn-edit" type="button">Edit</button>
-                                    <button class="btn-delete" type="button">Delete</button>
-                                </td>
-                            </tr>
+
+                        <tbody id="books-table-body">
+                            
+                        <!-- Render all books -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
 
+
+
+
+
+        
+    <!-- Add Book Form -->
+    <section id="add-book-form" class="section">
+        <div class="section-heading">
+            <div>
+                <h2>Add New Book</h2>
+                <p>Enter the details to add a book to your library.</p>
+            </div>
+        </div>
+
+        <p class="error" id="error"></p>
+
+        <div class="content-card form-card">
+            <form id="book-form">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="book-name">Book Name</label>
+                        <input
+                            type="text"
+                            id="book-name"
+                            name="book_name"
+                            placeholder="Enter book name"
+                            maxlength="200"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input
+                            type="text"
+                            id="author"
+                            name="author"
+                            placeholder="Enter author name"
+                            maxlength="150"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="isbn">ISBN</label>
+                        <input
+                            type="text"
+                            id="isbn"
+                            name="isbn"
+                            placeholder="Enter ISBN"
+                            maxlength="20"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="total-copies">Total Copies</label>
+                        <input
+                            type="number"
+                            id="total-copies"
+                            name="total_copies"
+                            placeholder="Enter total copies"
+                            min="1"
+                            step="1"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+                <div class="form-actions">
+                    <button
+                        type="reset"
+                        class="btn btn-secondary"
+                    >
+                        Clear
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                    >
+                        Add Book
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </section>
+
+
+
+    <!-- Edit book modal form -->
+
+    <div id="edit-book-modal" class="modal" hidden>
+        <div class="modal-content">
+            <h2>Edit Book</h2>
+            
+        <p class="error" id="error"></p>
+        <form id="edit-book-form">
+            <input type="hidden" name="book_id">
+
+            <label for="edit-book-name">Book Name</label>
+            <input
+                id="edit-book-name"
+                name="book_name"
+                type="text"
+                required
+            >
+
+            <label for="edit-author">Author</label>
+            <input
+                id="edit-author"
+                name="author"
+                type="text"
+                required
+            >
+
+            <label for="edit-isbn">ISBN</label>
+            <input
+                id="edit-isbn"
+                name="isbn"
+                type="text"
+                required
+            >
+
+            <label for="edit-total-copies">Total Copies</label>
+            <input
+                id="edit-total-copies"
+                name="total_copies"
+                type="number"
+                min="0"
+                required
+            >
+
+            <button type="submit">Save Changes</button>
+            <button type="button" id="cancel-edit">
+                Cancel
+            </button>
+            </form>
+        </div>
+    </div>
+
+
+
+        
         <!-- Members -->
         <section id="members" class="section">
             <div class="section-heading">
                 <div>
                     <h2>Members</h2>
-                    <p>View registered library members.</p>
+                    <p>Manage registered library members.</p>
                 </div>
+
+                <a href="#add-member-form" class="btn btn-primary">
+                    + Add Member
+                </a>
             </div>
 
             <div class="content-card">
                 <div class="toolbar">
-                    <input type="search" placeholder="Search member name or ID..."
-                           aria-label="Search members">
+                    <input
+                        type="search"
+                        id="search-members"
+                        placeholder="Search member name, email"
+                        aria-label="Search members"
+                    >
                 </div>
 
                 <div class="table-wrapper">
@@ -239,28 +345,144 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Books Issued</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>#M001</td>
-                                <td>Arun Kumar</td>
-                                <td>arun@example.com</td>
-                                <td>9876543210</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>#M002</td>
-                                <td>Priya S</td>
-                                <td>priya@example.com</td>
-                                <td>9876543211</td>
-                                <td>1</td>
-                            </tr>
+
+                        <tbody id="members-table-body">
+                            <!-- Members will be rendered using memberUI.js -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
+
+
+
+
+        
+        <!-- Add Member Form -->
+        <section id="add-member-form" class="section">
+            <div class="section-heading">
+                <div>
+                    <h2>Add New Member</h2>
+                    <p>Enter the details to register a library member.</p>
+                </div>
+            </div>
+
+            <p class="error" id="member-error" role="alert"></p>
+
+            <div class="content-card form-card">
+                <form id="member-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="member-name">Member Name</label>
+                            <input
+                                type="text"
+                                id="member-name"
+                                name="user_name"
+                                placeholder="Enter member name"
+                                maxlength="100"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="member-email">Email</label>
+                            <input
+                                type="email"
+                                id="member-email"
+                                name="email"
+                                placeholder="Enter email address"
+                                maxlength="255"
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="member-phone">Phone Number</label>
+                            <input
+                                type="tel"
+                                id="member-phone"
+                                name="phone_number"
+                                placeholder="Enter phone number"
+                                maxlength="20"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="btn btn-secondary">
+                            Clear
+                        </button>
+
+                        <button type="submit" class="btn btn-primary">
+                            Add Member
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        
+        <!-- Edit Member Modal -->
+        <div id="edit-member-modal" class="modal" hidden>
+            <div class="modal-content">
+                <h2>Edit Member</h2>
+
+                <p class="error" id="edit-member-error" role="alert"></p>
+
+                <form id="edit-member-form">
+                    <input type="hidden" name="user_id">
+
+                    <div class="form-group">
+                        <label for="edit-member-name">Member Name</label>
+                        <input
+                            type="text"
+                            id="edit-member-name"
+                            name="user_name"
+                            maxlength="100"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-member-email">Email</label>
+                        <input
+                            type="email"
+                            id="edit-member-email"
+                            name="email"
+                            maxlength="255"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-member-phone">Phone Number</label>
+                        <input
+                            type="tel"
+                            id="edit-member-phone"
+                            name="phone_number"
+                            maxlength="20"
+                        >
+                    </div>
+
+                    <div class="form-actions">
+                        <button
+                            type="button"
+                            id="cancel-edit-member"
+                            class="btn btn-secondary"
+                        >
+                            Cancel
+                        </button>
+
+                        <button type="submit" class="btn btn-primary">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
 
         <!-- Issued Books -->
         <section id="issued" class="section">
@@ -284,15 +506,8 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>#I001</td>
-                                <td>#B001</td>
-                                <td>#M001</td>
-                                <td>10 Oct 2026</td>
-                                <td>20 Oct 2026</td>
-                                <td><span class="badge badge-blue">Issued</span></td>
-                            </tr>
+                        <tbody id="issued-table-body">
+                            
                         </tbody>
                     </table>
                 </div>
@@ -320,14 +535,8 @@
                                 <th>Status</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>#I002</td>
-                                <td>#B002</td>
-                                <td>#M002</td>
-                                <td>10 Oct 2026</td>
-                                <td><span class="badge badge-red">Overdue</span></td>
-                            </tr>
+                        <tbody id="overdue-table-body">
+                            
                         </tbody>
                     </table>
                 </div>
@@ -335,16 +544,17 @@
         </section>
 
         <!-- Issue Book Form -->
-        <section id="issue-form" class="section">
+        <section class="section">
             <div class="section-heading">
                 <div>
                     <h2>Issue a Book</h2>
                     <p>Record a book loan for a library member.</p>
+                    <p class="error" id="issue-form-error"></p>
                 </div>
             </div>
 
             <div class="content-card form-card">
-                <form>
+                <form id="issue-form">
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="book-id">Book ID</label>
@@ -385,6 +595,8 @@
             </div>
         </section>
 
+        
+
         <footer class="footer">
             Library Book Tracker · Built for better library management
         </footer>
@@ -392,5 +604,7 @@
     </main>
 </div>
 
+
+    <script src="js/script.js" type="module"></script>
 </body>
 </html>
